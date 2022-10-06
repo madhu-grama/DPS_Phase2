@@ -1,7 +1,7 @@
 import time
 import boto3
 
-SQS_REQUEST_QUEUE_URL = "https://sqs.us-east-1.amazonaws.com/527397752392/RequestQueue"
+SQS_REQUEST_QUEUE_URL = "https://sqs.us-east-1.amazonaws.com/************/RequestQueue"
 MAX_EC2_INSTANCE = 20
 
 sqs_client = boto3.client('sqs', 'us-east-1')
@@ -55,9 +55,9 @@ def create_apptier_ec2_instance():
     new_instance = ec2.run_instances(InstanceType="t2.micro",
                                                     MaxCount=1,
                                                     MinCount=1,
-                                                    ImageId="ami-0ab215fdc1dbd33a7",
+                                                    ImageId="ami-************",
                                                     KeyName="new_user",
-                                                    SecurityGroupIds=["sg-0a8cec0a789b91edf"],
+                                                    SecurityGroupIds=["sg-************"],
                                                     UserData=user_data,
                                                     TagSpecifications=[{'ResourceType': 'instance',
                                                                         'Tags': [{'Key': 'Name',
