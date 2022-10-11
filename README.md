@@ -1,15 +1,12 @@
 # Face Recognition as a Service
 Cloud application which provides Face Recognition as a Service to the users by using the resources of the AWS cloud.
 
-## Group Members
-Akash Dhananjaya - 1222347698
-Madhu Grama Badarinarayan - 1219490987
-Ullas Kalakappa Lagubagi - 1222611390
+## Architecture
+![](images/architecture.png)
 
-## WebTier URL - http://ec2-3-84-40-48.compute-1.amazonaws.com
-## SQS Request Queue - RequestQueue
-## SQS Response Queue - ResponseQueue
-## S3 Input Bucket - proj-input-bucket
-## S3 Output Bucket - proj-output-bucket
+## Web Tier
+It loads the user input images to the SQS request queue and S3 input bucket and the load balancer manages the auto scaling with the help of the same SQS
 
-# Elastic-Cloud-Application
+## App Tier
+It hosts the provided deep learning model, processes the image and sends it back to a S3 output bucket and a SQS response queue. The App Tier also constantly checks the input queue for any messages. If there are none, it terminates itself to scale down the instances.
+
